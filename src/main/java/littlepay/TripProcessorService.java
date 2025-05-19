@@ -1,22 +1,16 @@
 package littlepay;
 
+import littlepay.model.Tap;
+import littlepay.model.TapType;
+import littlepay.model.Trip;
+import littlepay.model.TripStatus;
+import littlepay.service.PricingService;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
-
-// Import correct models and services
-import littlepay.model.Tap;
-import littlepay.model.Trip;
-import littlepay.model.TapType;
-import littlepay.model.TripStatus;
-import littlepay.model.Stop;
-import littlepay.service.PricingService;
 
 // Remove placeholder enums and records as they are now imported
 // enum TapType { ... }

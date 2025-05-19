@@ -1,18 +1,10 @@
 package com.littlepay.test;
 
+import com.littlepay.Main;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.api.Assertions;
 
-import littlepay.util.CsvReader;
-import com.littlepay.TripProcessorService;
-import com.littlepay.CsvWriter;
-import littlepay.model.Tap;
-import littlepay.model.Trip;
-import com.littlepay.Pricing;
-import com.littlepay.Main;
-
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

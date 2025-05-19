@@ -1,10 +1,6 @@
 package littlepay;
 
-import littlepay.model.Stop;
-import littlepay.model.Tap;
-import littlepay.model.TapType;
-import littlepay.model.Trip;
-import littlepay.model.TripStatus;
+import littlepay.model.*;
 import littlepay.service.PricingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

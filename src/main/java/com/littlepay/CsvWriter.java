@@ -3,8 +3,6 @@ package com.littlepay;
 import com.opencsv.CSVWriterBuilder;
 import com.opencsv.ICSVWriter;
 import littlepay.model.Trip;
-import littlepay.model.Stop; // In case stopId needs custom formatting
-import littlepay.model.TripStatus;
 
 import java.io.FileWriter;
 import java.io.IOException;

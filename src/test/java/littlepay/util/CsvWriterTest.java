@@ -8,7 +8,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.time.LocalDateTime;

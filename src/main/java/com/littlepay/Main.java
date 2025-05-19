@@ -1,12 +1,13 @@
 package com.littlepay;
 
+import littlepay.model.Tap;
+import littlepay.model.Trip;
+import littlepay.util.CsvReader;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import littlepay.util.CsvReader;
-import littlepay.model.Tap;
-import littlepay.model.Trip;
 
 // Placeholder Main class
 public class Main {

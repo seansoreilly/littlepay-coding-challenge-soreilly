@@ -1,11 +1,8 @@
 package littlepay.util;
 
 import com.opencsv.CSVWriter;
-import com.opencsv.bean.StatefulBeanToCsv;
-import com.opencsv.bean.StatefulBeanToCsvBuilder;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
-import littlepay.model.Stop;
 import littlepay.model.Trip;
 
 import java.io.FileWriter;

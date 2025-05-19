@@ -1,9 +1,10 @@
 package com.littlepay;
 
+import littlepay.model.Stop;
+
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
-import littlepay.model.Stop;
 
 // Placeholder Pricing class
 public class Pricing {
