@@ -58,3 +58,7 @@ sourceSets {
         }
     }
 }
+
+tasks.named('processTestResources', Copy) {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
