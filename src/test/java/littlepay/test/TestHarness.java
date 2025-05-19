@@ -73,8 +73,6 @@ public class TestHarness {
                 .filter(line -> !line.isEmpty())
                 .collect(Collectors.toList());
 
-        // Could use a more sophisticated CSV comparison library for production
-        // For now, simple line-by-line string comparison after trimming.
         Assertions.assertEquals(expectedLines.size(), actualLines.size(),
                 "Number of lines differ. Expected: " + expectedLines.size() + ", Actual: " + actualLines.size() +
                         "\nExpected File: " + expectedFile.toAbsolutePath() +
