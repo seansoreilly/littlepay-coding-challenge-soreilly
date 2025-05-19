@@ -87,6 +87,12 @@ public class TripProcessorService {
                 processedTrips.add(createIncompleteTrip(lastOnTap));
             }
         }
+
+        // Sort the trips before returning
+        // Primary sort by start time, secondary sort by PAN for stability
+        processedTrips.sort(Comparator.comparing(Trip::started)
+                .thenComparing(Trip::pan));
+
         return processedTrips;
     }
 

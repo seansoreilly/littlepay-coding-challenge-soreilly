@@ -20,37 +20,13 @@ public class TestHarness {
     private static final String EXPECTED_TRIPS_CSV = "expected_trips.csv";
     private static final String GENERATED_TRIPS_CSV = "generated_trips.csv"; // Output from the app
 
-    // Placeholder for main application entry or direct service call
-    // This would typically be:
-    // Main.processFiles(inputPath, outputPath) or
-    // new CsvReader().read(...) -> new TripProcessorService().process(...) -> new
-    // CsvWriter().write(...)
     private void runApplicationLogic(Path inputTapsFile, Path outputTripsFile) throws Exception {
         System.out.println("Running application logic: " + inputTapsFile + " -> " + outputTripsFile);
-        // In a real scenario:
+
         Files.deleteIfExists(outputTripsFile); // Ensure a fresh run
 
-        // Call the main processing logic
         Main.processFiles(inputTapsFile, outputTripsFile);
 
-        // For now, let's create a dummy output file to simulate the app running
-        // If an expected_trips.csv exists, we can copy it to generated_trips.csv
-        // to make the test pass, or create a simple dummy file.
-        /*
-         * Path parentDir = inputTapsFile.getParent();
-         * Path expectedFile = parentDir.resolve(EXPECTED_TRIPS_CSV);
-         * 
-         * if (Files.exists(expectedFile)) {
-         * // Simulate the app producing the *exact* expected output for now
-         * Files.copy(expectedFile, outputTripsFile,
-         * StandardCopyOption.REPLACE_EXISTING);
-         * } else {
-         * // Or create a very basic dummy generated file if no expected is present for
-         * some reason
-         * List<String> dummyContent = List.of("Header1,Header2", "Data1,Data2");
-         * Files.write(outputTripsFile, dummyContent);
-         * }
-         */
         System.out.println("Finished running application logic.");
     }
 

@@ -48,13 +48,11 @@ public class Main {
         System.out.println("Processing taps from: " + inputPath);
         System.out.println("Outputting trips to: " + outputPath);
 
-        // Initialize core components
         CsvReader csvReader = new CsvReader();
         PricingService pricingService = new PricingService();
         TripProcessorService tripProcessorService = new TripProcessorService(pricingService);
         CsvWriter csvWriter = new CsvWriter();
 
-        // Read taps from the input CSV file
         List<Tap> taps = csvReader.readTaps(inputPath.toString());
 
         // Handle cases where no taps are found or the file is empty
@@ -64,10 +62,8 @@ public class Main {
             return;
         }
 
-        // Process taps to generate trips
         List<Trip> trips = tripProcessorService.generateTrips(taps);
 
-        // Write the generated trips to the output CSV file
         csvWriter.writeTrips(trips, outputPath.toString());
 
         System.out.println("Successfully processed " + taps.size() + " taps and generated "
@@ -97,23 +93,17 @@ public class Main {
             tripsFilePath = args[1];
         }
 
-        // Remove the direct processing logic from here
-        // System.out.println("Processing taps from: " + tapsFilePath);
-        // System.out.println("Outputting trips to: " + tripsFilePath);
-
         try {
             Path inputPath = Paths.get(tapsFilePath);
             Path outputPath = Paths.get(tripsFilePath);
 
-            // Call the new static method
             processFiles(inputPath, outputPath);
 
         } catch (InvalidPathException e) {
             System.err.println("Error: Invalid file path provided. " + e.getMessage());
         } catch (SecurityException e) {
             System.err.println("Security Error: Path access denied. " + e.getMessage());
-        } catch (FileNotFoundException e) { // This might still be relevant if Paths.get fails, but processFiles handles
-                                            // internal CsvReader's FileNotFound
+        } catch (FileNotFoundException e) {
             System.err.println("Error: Input or Output path is invalid. " + e.getMessage());
         } catch (Exception e) {
             System.err.println("An unexpected error occurred: " + e.getMessage());
