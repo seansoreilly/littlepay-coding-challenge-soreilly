@@ -3,6 +3,13 @@ plugins {
     id 'application'
 }
 
+// Disable build cache for all tasks
+allprojects {
+    tasks.configureEach {
+        outputs.upToDateWhen { false }
+    }
+}
+
 group = 'littlepay'
 version = '1.0-SNAPSHOT'
 
@@ -25,10 +32,20 @@ dependencies {
 
     // For testing
     testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter-api'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.10.1'
 }
 
 test {
     useJUnitPlatform()
-} 
+    outputs.upToDateWhen { false } // Force tests to run every time
+}
+
+sourceSets {
+    test {
+        resources {
+            srcDir 'src/test/resources'
+        }
+    }
+}

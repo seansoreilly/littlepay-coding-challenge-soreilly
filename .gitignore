@@ -32,3 +32,7 @@ out/
 # Local gradle properties
 gradle.properties
 local.properties 
+
+*.md
+gradlew
+gradlew.bat
