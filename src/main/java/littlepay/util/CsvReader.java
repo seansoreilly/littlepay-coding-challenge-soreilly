@@ -56,11 +56,11 @@ public class CsvReader {
                 } catch (DateTimeParseException e) {
                     LOGGER.log(
                             Level.WARNING, "Skipping row due to invalid date format at line " + lineNumber + " in file "
-                                    + filePath + ": " + (line.length > 1 ? line[1] : "[DATE_MISSING_OR_ROW_TOO_SHORT]"),
-                            e);
+                                    + filePath + ": " + (line.length > 1 ? line[1] : "[DATE_MISSING_OR_ROW_TOO_SHORT]")
+                                    + ". Error: " + e.getMessage());
                 } catch (IllegalArgumentException e) { // Catches TapType or Stop.fromString errors
                     LOGGER.log(Level.WARNING, "Skipping row due to invalid enum value at line " + lineNumber
-                            + " in file " + filePath + ": " + e.getMessage(), e);
+                            + " in file " + filePath + ": " + e.getMessage());
                 } catch (Exception e) {
                     LOGGER.log(Level.WARNING,
                             "Skipping row due to an unexpected error at line " + lineNumber + " in file " + filePath,
