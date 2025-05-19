@@ -392,15 +392,18 @@ class TripProcessorServiceTest {
 
         assertEquals(3, trips.size());
 
-        Trip completed = trips.stream().filter(t -> t.status() == TripStatus.COMPLETED).findFirst().get();
+        Trip completed = trips.stream().filter(t -> t.status() == TripStatus.COMPLETED).findFirst().orElse(null);
+        assertNotNull(completed, "Completed trip should be present");
         assertEquals(15 * 60 + 30, completed.durationSecs());
         assertEquals(pricingService.getFare(Stop.STOP1, Stop.STOP2).setScale(2), completed.chargeAmount().setScale(2));
 
-        Trip cancelled = trips.stream().filter(t -> t.status() == TripStatus.CANCELLED).findFirst().get();
+        Trip cancelled = trips.stream().filter(t -> t.status() == TripStatus.CANCELLED).findFirst().orElse(null);
+        assertNotNull(cancelled, "Cancelled trip should be present");
         assertEquals(5 * 60, cancelled.durationSecs());
         assertEquals(BigDecimal.ZERO.setScale(2), cancelled.chargeAmount().setScale(2));
 
-        Trip incomplete = trips.stream().filter(t -> t.status() == TripStatus.INCOMPLETE).findFirst().get();
+        Trip incomplete = trips.stream().filter(t -> t.status() == TripStatus.INCOMPLETE).findFirst().orElse(null);
+        assertNotNull(incomplete, "Incomplete trip should be present");
         assertEquals(0, incomplete.durationSecs());
         assertEquals(pricingService.getMaxFare(Stop.STOP1).setScale(2), incomplete.chargeAmount().setScale(2));
     }
