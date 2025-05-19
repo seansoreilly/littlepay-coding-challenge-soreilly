@@ -28,17 +28,29 @@ public class Main {
      * file.
      * This method contains the core logic of the application.
      *
-     * @param inputPath  Path to the input taps CSV file.
-     * @param outputPath Path to the output trips CSV file.
+     * @param rawInputPath  Path to the input taps CSV file.
+     * @param rawOutputPath Path to the output trips CSV file.
      * @throws Exception if any error occurs during processing.
      */
-    public static void processFiles(Path inputPath, Path outputPath) throws Exception {
+    public static void processFiles(Path rawInputPath, Path rawOutputPath) throws Exception {
+        Path baseDir = Paths.get(".").toAbsolutePath().normalize();
+
+        Path inputPath = rawInputPath.toAbsolutePath().normalize();
+        if (!inputPath.startsWith(baseDir)) {
+            throw new SecurityException("Input path is outside the allowed working directory: " + inputPath);
+        }
+
+        Path outputPath = rawOutputPath.toAbsolutePath().normalize();
+        if (!outputPath.startsWith(baseDir)) {
+            throw new SecurityException("Output path is outside the allowed working directory: " + outputPath);
+        }
+
         System.out.println("Processing taps from: " + inputPath);
         System.out.println("Outputting trips to: " + outputPath);
 
         // Initialize core components
         CsvReader csvReader = new CsvReader();
-        PricingService pricingService = new PricingService(); // Assumes default constructor loads prices
+        PricingService pricingService = new PricingService();
         TripProcessorService tripProcessorService = new TripProcessorService(pricingService);
         CsvWriter csvWriter = new CsvWriter();
 
@@ -98,6 +110,8 @@ public class Main {
 
         } catch (InvalidPathException e) {
             System.err.println("Error: Invalid file path provided. " + e.getMessage());
+        } catch (SecurityException e) {
+            System.err.println("Security Error: Path access denied. " + e.getMessage());
         } catch (FileNotFoundException e) { // This might still be relevant if Paths.get fails, but processFiles handles
                                             // internal CsvReader's FileNotFound
             System.err.println("Error: Input or Output path is invalid. " + e.getMessage());
