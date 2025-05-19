@@ -55,8 +55,8 @@ public class CsvWriter {
                                 String finished = trip.finished() != null ? trip.finished().format(DATE_TIME_FORMATTER)
                                                 : "";
                                 String durationSecs = String.valueOf(trip.durationSecs());
-                                String fromStopId = trip.fromStopId() != null ? trip.fromStopId().name() : "";
-                                String toStopId = trip.toStopId() != null ? trip.toStopId().name() : "";
+                                String fromStopId = trip.fromStopId() != null ? trip.fromStopId().toPascalCase() : "";
+                                String toStopId = trip.toStopId() != null ? trip.toStopId().toPascalCase() : "";
                                 String chargeAmount = trip.chargeAmount() != null
                                                 ? CURRENCY_FORMAT.format(trip.chargeAmount())
                                                 : CURRENCY_FORMAT.format(BigDecimal.ZERO);

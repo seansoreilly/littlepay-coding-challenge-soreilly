@@ -24,6 +24,45 @@ public class Main {
     private static final String DEFAULT_TRIPS_FILE = "trips.csv";
 
     /**
+     * Processes taps from an input file and writes the resulting trips to an output
+     * file.
+     * This method contains the core logic of the application.
+     *
+     * @param inputPath  Path to the input taps CSV file.
+     * @param outputPath Path to the output trips CSV file.
+     * @throws Exception if any error occurs during processing.
+     */
+    public static void processFiles(Path inputPath, Path outputPath) throws Exception {
+        System.out.println("Processing taps from: " + inputPath);
+        System.out.println("Outputting trips to: " + outputPath);
+
+        // Initialize core components
+        CsvReader csvReader = new CsvReader();
+        PricingService pricingService = new PricingService(); // Assumes default constructor loads prices
+        TripProcessorService tripProcessorService = new TripProcessorService(pricingService);
+        CsvWriter csvWriter = new CsvWriter();
+
+        // Read taps from the input CSV file
+        List<Tap> taps = csvReader.readTaps(inputPath.toString());
+
+        // Handle cases where no taps are found or the file is empty
+        if (taps == null || taps.isEmpty()) {
+            System.out.println("No taps found or error reading taps file. Creating empty trips file.");
+            csvWriter.writeTrips(new java.util.ArrayList<>(), outputPath.toString());
+            return;
+        }
+
+        // Process taps to generate trips
+        List<Trip> trips = tripProcessorService.generateTrips(taps);
+
+        // Write the generated trips to the output CSV file
+        csvWriter.writeTrips(trips, outputPath.toString());
+
+        System.out.println("Successfully processed " + taps.size() + " taps and generated "
+                + (trips == null ? 0 : trips.size()) + " trips to " + outputPath);
+    }
+
+    /**
      * Entry point of the application.
      * Parses command-line arguments for input and output file paths,
      * then initiates the tap processing workflow.
@@ -46,50 +85,25 @@ public class Main {
             tripsFilePath = args[1];
         }
 
-        System.out.println("Processing taps from: " + tapsFilePath);
-        System.out.println("Outputting trips to: " + tripsFilePath);
+        // Remove the direct processing logic from here
+        // System.out.println("Processing taps from: " + tapsFilePath);
+        // System.out.println("Outputting trips to: " + tripsFilePath);
 
         try {
             Path inputPath = Paths.get(tapsFilePath);
             Path outputPath = Paths.get(tripsFilePath);
 
-            // Initialize core components
-            CsvReader csvReader = new CsvReader();
-            // PricingService loads its data internally (e.g., from a static block or
-            // constructor)
-            PricingService pricingService = new PricingService();
-            TripProcessorService tripProcessorService = new TripProcessorService(pricingService);
-            CsvWriter csvWriter = new CsvWriter();
-
-            // Read taps from the input CSV file
-            List<Tap> taps = csvReader.readTaps(inputPath.toString());
-
-            // Handle cases where no taps are found or the file is empty
-            if (taps == null || taps.isEmpty()) {
-                System.out.println("No taps found or error reading taps file. Exiting.");
-                // As per requirements/assumptions, create an empty trips.csv with headers
-                csvWriter.writeTrips(new java.util.ArrayList<>(), outputPath.toString());
-                return;
-            }
-
-            // Process taps to generate trips
-            List<Trip> trips = tripProcessorService.generateTrips(taps);
-
-            // Write the generated trips to the output CSV file
-            csvWriter.writeTrips(trips, outputPath.toString());
-
-            System.out.println("Successfully processed " + taps.size() + " taps and generated "
-                    + (trips == null ? 0 : trips.size()) + " trips.");
+            // Call the new static method
+            processFiles(inputPath, outputPath);
 
         } catch (InvalidPathException e) {
             System.err.println("Error: Invalid file path provided. " + e.getMessage());
-        } catch (FileNotFoundException e) {
-            // CsvReader might throw this if the file doesn't exist
-            System.err.println("Error: Taps file not found at " + tapsFilePath + ". " + e.getMessage());
+        } catch (FileNotFoundException e) { // This might still be relevant if Paths.get fails, but processFiles handles
+                                            // internal CsvReader's FileNotFound
+            System.err.println("Error: Input or Output path is invalid. " + e.getMessage());
         } catch (Exception e) {
-            // Catch-all for other unexpected errors during processing
-            System.err.println("An unexpected error occurred during processing: " + e.getMessage());
-            e.printStackTrace(); // Provides stack trace for debugging
+            System.err.println("An unexpected error occurred: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

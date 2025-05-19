@@ -1,6 +1,6 @@
-package com.littlepay.test;
+package littlepay.test;
 
-import com.littlepay.Main;
+import littlepay.Main;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -25,7 +25,7 @@ public class TestHarness {
     // Main.processFiles(inputPath, outputPath) or
     // new CsvReader().read(...) -> new TripProcessorService().process(...) -> new
     // CsvWriter().write(...)
-    private void runApplicationLogic(Path inputTapsFile, Path outputTripsFile) throws IOException {
+    private void runApplicationLogic(Path inputTapsFile, Path outputTripsFile) throws Exception {
         System.out.println("Running application logic: " + inputTapsFile + " -> " + outputTripsFile);
         // In a real scenario:
         Files.deleteIfExists(outputTripsFile); // Ensure a fresh run
@@ -65,7 +65,7 @@ public class TestHarness {
 
     @ParameterizedTest
     @MethodSource("testCaseProvider")
-    void runTestCase(Path testCaseDir) throws IOException {
+    void runTestCase(Path testCaseDir) throws Exception {
         Path inputTapsFile = testCaseDir.resolve(INPUT_TAPS_CSV);
         Path expectedTripsFile = testCaseDir.resolve(EXPECTED_TRIPS_CSV);
         Path generatedTripsFile = testCaseDir.resolve(GENERATED_TRIPS_CSV); // App will write here

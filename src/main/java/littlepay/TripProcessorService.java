@@ -130,18 +130,18 @@ public class TripProcessorService {
     private Trip createIncompleteTrip(Tap onTap) {
         // Assumptions for Incomplete Trips from plan:
         // - ChargeAmount = maximum fare from ON tap's StopId
-        // - ToStopId can be set to the FromStopId
-        // - Finished timestamp might be the same as Started
+        // - ToStopId can be set to the FromStopId (or null - choosing null)
+        // - Finished timestamp might be the same as Started (or null - choosing null)
         // - DurationSecs might be 0
 
         BigDecimal chargeAmount = pricingService.getMaxFare(onTap.stopId());
 
         return new Trip(
                 onTap.dateTimeUTC(),
-                onTap.dateTimeUTC(),
+                null, // Finished timestamp set to null for INCOMPLETE
                 0,
                 onTap.stopId(),
-                onTap.stopId(),
+                null, // ToStopId set to null for INCOMPLETE
                 chargeAmount,
                 onTap.companyId(),
                 onTap.busId(),

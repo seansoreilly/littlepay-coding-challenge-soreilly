@@ -203,10 +203,10 @@ class TripProcessorServiceTest {
 
         assertEquals(TripStatus.INCOMPLETE, trip.status());
         assertEquals(onTap.dateTimeUTC(), trip.started());
-        assertEquals(onTap.dateTimeUTC(), trip.finished()); // As per current implementation assumption
-        assertEquals(0, trip.durationSecs()); // As per current implementation assumption
+        assertNull(trip.finished());
+        assertEquals(0, trip.durationSecs());
         assertEquals(stop, trip.fromStopId());
-        assertEquals(stop, trip.toStopId()); // As per current implementation assumption
+        assertNull(trip.toStopId());
         assertEquals(pricingService.getMaxFare(stop).setScale(2), trip.chargeAmount().setScale(2));
         assertEquals(DEFAULT_PAN, trip.pan());
     }
