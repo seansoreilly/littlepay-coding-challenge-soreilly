@@ -21,7 +21,11 @@ public enum Stop {
         if (name == null || name.isEmpty()) {
             return name;
         }
-        // Converts STOP1 to Stop1
-        return name.charAt(0) + name.substring(1).toLowerCase();
+
+        // Extract the stop number (1, 2, 3, etc.)
+        String stopNumber = name.substring(4); // Assumes format is "STOP1", "STOP2", etc.
+
+        // Return in Pascal case format: "Stop1", "Stop2", etc.
+        return "Stop" + stopNumber;
     }
 }
