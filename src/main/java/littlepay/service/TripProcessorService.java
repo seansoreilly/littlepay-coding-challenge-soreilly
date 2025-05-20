@@ -11,13 +11,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
-// Remove placeholder enums and records as they are now imported
-// enum TapType { ... }
-// enum TripStatus { ... }
-// record Tap { ... }
-// record Trip { ... }
-// class Pricing { ... }
-
 public class TripProcessorService {
 
     private final PricingService pricingService;

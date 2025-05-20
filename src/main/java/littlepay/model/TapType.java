@@ -4,4 +4,4 @@ public enum TapType {
     ON,
     OFF,
     INVALID
-} 
+}
