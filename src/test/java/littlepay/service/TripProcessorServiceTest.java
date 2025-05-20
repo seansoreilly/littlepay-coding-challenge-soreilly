@@ -1,8 +1,6 @@
-package littlepay;
+package littlepay.service;
 
 import littlepay.model.*;
-import littlepay.service.PricingService;
-import littlepay.service.TripProcessorService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
