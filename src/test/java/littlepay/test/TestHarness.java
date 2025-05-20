@@ -1,6 +1,6 @@
 package littlepay.test;
 
-import littlepay.Main;
+import littlepay.FareCalculator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -25,7 +25,7 @@ public class TestHarness {
 
         Files.deleteIfExists(outputTripsFile); // Ensure a fresh run
 
-        Main.processFiles(inputTapsFile, outputTripsFile);
+        FareCalculator.processFiles(inputTapsFile, outputTripsFile);
 
         System.out.println("Finished running application logic.");
     }

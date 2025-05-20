@@ -19,7 +19,7 @@ import java.util.List;
  * trips,
  * and writing the resulting trips to an output file.
  */
-public class Main {
+public class FareCalculator {
 
     private static final String DEFAULT_TAPS_FILE = "data\\input\\taps.csv";
     private static final String DEFAULT_TRIPS_FILE = "data\\output\\trips.csv";
