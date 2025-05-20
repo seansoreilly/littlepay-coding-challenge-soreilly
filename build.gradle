@@ -6,32 +6,25 @@ plugins {
 group = 'littlepay'
 version = '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-}
-
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 application {
     mainClass = 'littlepay.Main'
 }
 
-dependencies {
-    implementation 'com.opencsv:opencsv:5.9'
+repositories {
+    mavenCentral()
 }
 
-testing {
-    suites {
-        test {
-            useJUnitJupiter('5.10.1')
+dependencies {
+    implementation 'com.opencsv:opencsv:5.9'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1'
+}
 
-            dependencies {
-                implementation project()
-                implementation 'org.junit.jupiter:junit-jupiter'
-            }
-        }
-    }
+test {
+    useJUnitPlatform()
 }
