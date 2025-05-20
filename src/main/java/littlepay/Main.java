@@ -3,6 +3,7 @@ package littlepay;
 import littlepay.model.Tap;
 import littlepay.model.Trip;
 import littlepay.service.PricingService;
+import littlepay.service.TripProcessorService;
 import littlepay.util.CsvReader;
 import littlepay.util.CsvWriter;
 

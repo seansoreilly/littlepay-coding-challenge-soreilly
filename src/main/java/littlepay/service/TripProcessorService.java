@@ -1,10 +1,9 @@
-package littlepay;
+package littlepay.service;
 
 import littlepay.model.Tap;
 import littlepay.model.TapType;
 import littlepay.model.Trip;
 import littlepay.model.TripStatus;
-import littlepay.service.PricingService;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
