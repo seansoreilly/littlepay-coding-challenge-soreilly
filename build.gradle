@@ -3,13 +3,6 @@ plugins {
     id 'application'
 }
 
-// Disable build cache for all tasks
-allprojects {
-    tasks.configureEach {
-        outputs.upToDateWhen { false }
-    }
-}
-
 group = 'littlepay'
 version = '1.0-SNAPSHOT'
 
@@ -23,11 +16,10 @@ java {
 }
 
 application {
-    mainClass = 'littlepay.Main' // Will be created in a later phase
+    mainClass = 'littlepay.Main'
 }
 
 dependencies {
-    // For CSV processing
     implementation 'com.opencsv:opencsv:5.9'
 }
 
@@ -45,20 +37,4 @@ testing {
             }
         }
     }
-}
-
-test {
-    outputs.upToDateWhen { false } // Force tests to run every time
-}
-
-sourceSets {
-    test {
-        resources {
-            srcDir 'src/test/resources'
-        }
-    }
-}
-
-tasks.named('processTestResources', Copy) {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
