@@ -77,9 +77,9 @@ public class FareCalculator {
      *
      * @param args Command-line arguments. Expects up to two arguments:
      *             args[0]: Path to the input taps CSV file (optional, defaults to
-     *             "taps.csv").
+     *             "data\input\taps.csv").
      *             args[1]: Path to the output trips CSV file (optional, defaults to
-     *             "trips.csv").
+     *             "data\output\trips.csv").
      */
     public static void main(String[] args) {
         String tapsFilePath = DEFAULT_TAPS_FILE;
