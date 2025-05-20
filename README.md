@@ -19,7 +19,7 @@ The core logic involves:
 - Java 21 JDK
 - Gradle (the project uses the Gradle wrapper, so a local Gradle installation is not strictly required if using `./gradlew`)
 
-## How to Build
+## How to build
 
 The project uses Gradle as its build tool.
 
