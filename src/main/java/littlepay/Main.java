@@ -21,8 +21,8 @@ import java.util.List;
  */
 public class Main {
 
-    private static final String DEFAULT_TAPS_FILE = "taps.csv";
-    private static final String DEFAULT_TRIPS_FILE = "trips.csv";
+    private static final String DEFAULT_TAPS_FILE = "data\\input\\taps.csv";
+    private static final String DEFAULT_TRIPS_FILE = "data\\output\\trips.csv";
 
     /**
      * Processes taps from an input file and writes the resulting trips to an output
@@ -56,7 +56,6 @@ public class Main {
 
         List<Tap> taps = csvReader.readTaps(inputPath.toString());
 
-        // Handle cases where no taps are found or the file is empty
         if (taps == null || taps.isEmpty()) {
             System.out.println("No taps found or error reading taps file. Creating empty trips file.");
             csvWriter.writeTrips(new java.util.ArrayList<>(), outputPath.toString());
