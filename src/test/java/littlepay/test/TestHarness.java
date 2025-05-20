@@ -16,9 +16,9 @@ import java.util.stream.Stream;
 public class TestHarness {
 
     private static final Path TEST_CASES_DIR = Paths.get("src", "test", "resources", "test-cases");
-    private static final String INPUT_TAPS_CSV = "input_taps.csv";
+    private static final String taps_CSV = "taps.csv";
     private static final String EXPECTED_TRIPS_CSV = "expected_trips.csv";
-    private static final String GENERATED_TRIPS_CSV = "generated_trips.csv"; // Output from the app
+    private static final String GENERATED_TRIPS_CSV = "trips.csv"; // Output from the app
 
     private void runApplicationLogic(Path inputTapsFile, Path outputTripsFile) throws Exception {
         System.out.println("Running application logic: " + inputTapsFile + " -> " + outputTripsFile);
@@ -42,7 +42,7 @@ public class TestHarness {
     @ParameterizedTest
     @MethodSource("testCaseProvider")
     void runTestCase(Path testCaseDir) throws Exception {
-        Path inputTapsFile = testCaseDir.resolve(INPUT_TAPS_CSV);
+        Path inputTapsFile = testCaseDir.resolve(taps_CSV);
         Path expectedTripsFile = testCaseDir.resolve(EXPECTED_TRIPS_CSV);
         Path generatedTripsFile = testCaseDir.resolve(GENERATED_TRIPS_CSV); // App will write here
 
