@@ -33,6 +33,5 @@ out/
 gradle.properties
 local.properties 
 
-*.md
 gradlew
 gradlew.bat

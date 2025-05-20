@@ -13,7 +13,7 @@ java {
 }
 
 application {
-    mainClass = 'littlepay.Main'
+    mainClass = 'littlepay.FareCalculator'
 }
 
 repositories {
